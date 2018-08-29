@@ -27,8 +27,6 @@ class AkeneoEnterpriseAPIBatchLoader implements LoaderInterface
         $index = 0;
         $batch = [];
         while ($batch[] = $line = yield) {
-            file_put_contents('php://stderr', sprintf('Read product %d.', $index) . PHP_EOL, FILE_APPEND);
-
             if (++$index % $this->batchSize === 0 && $index > 1) {
                 file_put_contents('php://stderr', sprintf('Sent products %d to %d.', $index - $this->batchSize, $index) . PHP_EOL, FILE_APPEND);
 
@@ -36,7 +34,7 @@ class AkeneoEnterpriseAPIBatchLoader implements LoaderInterface
                 $this->client->upsertList($batch);
                 $end = microtime(true);
 
-                file_put_contents('php://stderr', sprintf('Request time: %f seconds.', $end - $start) . PHP_EOL, FILE_APPEND);
+                file_put_contents('php://stderr', sprintf(' > Request time: %f seconds.', $end - $start) . PHP_EOL, FILE_APPEND);
                 $batch = [];
             }
 
