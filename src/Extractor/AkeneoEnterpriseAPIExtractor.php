@@ -22,8 +22,6 @@ class AkeneoEnterpriseAPIExtractor implements ExtractorInterface
 
     public function extract(): \Iterator
     {
-        foreach ($this->client->all() as $product) {
-            yield $product;
-        }
+        yield from $this->client->all(100);
     }
 }
