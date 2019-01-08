@@ -16,7 +16,7 @@
     "require-dev": {
         "symfony/dotenv": "*"
     },
-    "repositoies": [
+    "repositories": [
         {
             "type": "git",
             "url": "git@github.com:akeneo/api-php-client-ee.git"
